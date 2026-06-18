@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimesh & Malsha's Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="envelope-overlay" onclick="openEnvelope()">
+        <div class="envelope-wrapper">
+            <div class="ribbon"></div>
+            <div class="envelope-text">CLICK TO OPEN</div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <p class="sub-title">The Celebration of Love</p>
+            <h1 class="couple-names">Nimesh & Malsha</h1>
+            <p style="color: #666; font-style: italic;">Together with our families, we joyfully invite you to join us</p>
+        </header>
+
+        <div class="hero-img-container">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" alt="Nimesh & Malsha" class="hero-img">
+        </div>
+
+        <div class="countdown-section">
+            <p class="countdown-title">The Final Countdown</p>
+            <div class="countdown-container">
+                <div class="box"><h3 id="days">00</h3><span>Days</span></div>
+                <div class="box"><h3 id="hours">00</h3><span>Hours</span></div>
+                <div class="box"><h3 id="mins">00</h3><span>Mins</span></div>
+                <div class="box"><h3 id="secs">00</h3><span>Secs</span></div>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h2>The Wedding Details</h2>
+            <p style="font-weight: 600; color: #4a0e17; margin-bottom: 5px;">Thursday, 17th February 2028</p>
+            <p style="font-size: 14px; color: #555;">From 11:00 AM Onwards</p>
+            <br>
+            <p style="font-weight: 600;">The Grand Ballroom</p>
+            <p style="font-size: 14px; color: #555;">Hotel Name, Colombo</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15844.116491741548!2d79.8517228!3d6.8871638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259440625904f%3A0xe54d87ed13a4848a!2sGalle%20Face%20Hotel!5e0!3m2!1sen!2slk!4v1700000000000"></iframe>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" class="btn">View Location Map</a>
+        </div>
+
+        <div class="gallery-section">
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 35px; color: #8a1c28; margin-bottom: 15px;">Our Gallery</h2>
+            <div class="slider">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=500" class="slide active" alt="Gallery 1">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=500" class="slide" alt="Gallery 2">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=500" class="slide" alt="Gallery 3">
+            </div>
+        </div>
+
+        <div class="details-section" style="background-color: #fff5f5;">
+            <h2 style="font-size: 28px;">Are You Coming?</h2>
+            <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Please let us know by contacting us</p>
+            <a href="tel:+94771234567" class="btn" style="background: #25D366; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">Call Nimesh</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
