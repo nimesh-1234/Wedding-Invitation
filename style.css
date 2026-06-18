@@ -22,12 +22,12 @@ body {
     pointer-events: none;
     background: #ffb7b2;
     border-radius: 150% 0 150% 150%;
-    opacity: 0.7;
+    opacity: 0.6;
     animation: fall linear infinite;
 }
 
 @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
     100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
 }
 
@@ -93,10 +93,9 @@ body {
     z-index: 4;
 }
 
-/* --- MAIN CONTENT --- */
+/* --- MAIN CONTAINER --- */
 #main-content {
-    opacity: 0;
-    transition: opacity 1.5s ease;
+    display: none; /* මුලින්ම සඟවා තැබීමට */
     max-width: 500px;
     margin: 0 auto;
     background: #fff;
@@ -105,51 +104,86 @@ body {
     padding-bottom: 50px;
 }
 
-header {
-    padding: 60px 20px;
-    background: linear-gradient(rgba(255,245,245,0.8), rgba(255,255,255,1));
+/* --- 🔥 ෂුවර් එකටම වැඩ කරන ANIMATION CSS --- */
+.animate-section {
+    opacity: 0;
+    transform: translateY(50px);
+    will-change: opacity, transform;
+}
+
+/* සක්‍රීය වූ විට වැඩ කරන ඇනිමේෂන් එක */
+.animate-section.appear {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 50px 20px;
+    border-radius: 24px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .couple-names {
     font-family: 'Great Vibes', cursive;
-    font-size: 45px;
-    color: #8a1c28;
-    margin-bottom: 10px;
-    animation: fadeIn 2s ease;
+    font-size: 52px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin: 15px 0;
 }
 
 .sub-title {
-    font-size: 13px;
-    letter-spacing: 3px;
+    font-size: 11px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    color: #777;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
-/* --- HERO IMAGE --- */
-.hero-img-container {
-    padding: 0 20px;
+/* --- INLINE PHOTOS --- */
+.inline-photo-section {
+    padding: 20px;
+    margin: 10px 0;
 }
-.hero-img {
+
+.inline-photo {
     width: 100%;
-    height: 400px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 200px 200px 0 0;
-    border: 5px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 /* --- COUNTDOWN --- */
 .countdown-section {
     padding: 40px 20px;
     background: #fff5f5;
-    margin: 30px 0;
 }
 .countdown-title {
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 20px;
     color: #8a1c28;
+    font-weight: 600;
 }
 .countdown-container {
     display: flex;
@@ -159,83 +193,152 @@ header {
     background: #fff;
     padding: 15px;
     width: 22%;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
 }
 .box h3 {
     font-size: 24px;
     color: #c31432;
 }
 .box span {
-    font-size: 11px;
+    font-size: 10px;
     color: #777;
     text-transform: uppercase;
 }
 
-/* --- GALLERY LOOP --- */
-.gallery-section {
-    padding: 30px 20px;
+/* --- TIMELINE --- */
+.timeline-section {
+    padding: 40px 30px;
+    text-align: left;
 }
-.slider {
-    width: 100%;
-    height: 300px;
+.timeline-item {
+    padding-left: 25px;
+    border-left: 2px dashed #c31432;
     position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
-.slide {
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: #c31432;
+    border-radius: 50%;
+}
+
+/* --- 📖 3D BOOK GALLERY (FIXED OVERLAP & ALIGNMENT) --- */
+.gallery-section {
+    padding: 40px 20px;
+    clear: both; /* වටේ තියෙන අනිත් සෙක්ෂන් පටලවා නොගැනීමට */
+}
+.gallery-section h2, .details-section h2, .timeline-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    color: #8a1c28;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Container එක හරියටම ස්ථාවර කර පහළට තල්ලු කිරීම */
+.book-container {
+    width: 100%;
+    max-width: 280px; /* පින්තූර දෙපැත්තට Gap නොවී මැදට Fit වීමට */
+    height: 360px;
+    margin: 0 auto 35px auto; /* Bottom Margin එක මඟින් 'Are you coming' එක පහළට තල්ලු කරයි */
+    perspective: 1500px;
+    position: relative;
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.book-page {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    object-fit: cover;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
-.slide.active {
-    opacity: 1;
+
+.base-page {
+    object-fit: cover;
+    z-index: 1;
+}
+
+.flip-page {
+    z-index: 2;
+    transform-origin: left center;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.page-front, .page-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    top: 0;
+    left: 0;
+}
+
+.page-back {
+    transform: rotateY(180deg);
+}
+
+.page-front img, .page-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.book-container.flipped .flip-page {
+    transform: rotateY(-180deg);
 }
 
 /* --- DETAILS & MAP --- */
 .details-section {
-    padding: 40px 20px;
-}
-.details-section h2 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 35px;
-    color: #8a1c28;
-    margin-bottom: 10px;
+    padding: 50px 20px;
 }
 .map-container {
-    margin: 20px 0;
-    border-radius: 15px;
+    margin: 25px 0;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 iframe {
     width: 100%;
-    height: 250px;
+    height: 260px;
     border: none;
 }
 
 /* --- BUTTONS --- */
 .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 14px 35px;
     background: #c31432;
     color: #fff;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 30px;
     font-weight: 600;
     margin-top: 15px;
-    box-shadow: 0 4px 15px rgba(195, 20, 50, 0.4);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(195, 20, 50, 0.35);
+    transition: all 0.3s ease;
 }
 .btn:hover {
-    transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(195, 20, 50, 0.5);
 }
