@@ -95,7 +95,7 @@ body {
 
 /* --- MAIN CONTAINER --- */
 #main-content {
-    display: none; /* මුලින්ම සඟවා තැබීමට */
+    display: none;
     max-width: 500px;
     margin: 0 auto;
     background: #fff;
@@ -111,14 +111,13 @@ body {
     will-change: opacity, transform;
 }
 
-/* සක්‍රීය වූ විට වැඩ කරන ඇනිමේෂන් එක */
 .animate-section.appear {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- HERO SECTION (UPDATED FOR FACE VISIBILITY) --- */
+/* --- HERO SECTION --- */
 .hero-section {
     position: relative;
     width: 100%;
@@ -126,17 +125,16 @@ body {
     background: url('public/IMG-20250918-WA0035.jpg') center/cover no-repeat;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* 🌟 කාඩ් එක මැද තියන්නෙ නැතුව යට පැත්තට Align කළා */
-    padding: 24px 24px 50px 24px; /* යටින් නිසි පරතරයක් තැබීමට */
+    align-items: flex-end; 
+    padding: 24px 24px 50px 24px; 
 }
 
-/* 🌟 කාඩ් එක කුඩා කර, විනිවිද පෙනීම (Transparency) වැඩි කළා */
 .glass-card {
-    background: rgba(255, 255, 255, 0.12); /* 0.25 සිට 0.12 දක්වා විනිවිද පෙනීම වැඩි කළා */
-    backdrop-filter: blur(8px); /* Blur එක පොඩ්ඩක් අඩු කළා පින්තූරය හොඳින් පෙනෙන්න */
+    background: rgba(255, 255, 255, 0.12); 
+    backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 25px 20px; /* උස (Padding) කුඩා කළා මුහුණු නොවැසෙන්න */
+    padding: 25px 20px; 
     border-radius: 20px;
     width: 100%;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
@@ -144,9 +142,9 @@ body {
 
 .couple-names {
     font-family: 'Great Vibes', cursive;
-    font-size: 46px; /* අකුරු පොඩ්ඩක් සකස් කළා */
+    font-size: 46px; 
     color: #fff;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* අකුරු කැපී පෙනෙන්න shadow එක වැඩි කළා */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
     margin: 8px 0;
 }
 
@@ -159,18 +157,24 @@ body {
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
-/* --- INLINE PHOTOS --- */
+/* --- INLINE PHOTOS (🔥 ARCH SHAPE RETAINED - NO BLANK MARGINS) --- */
 .inline-photo-section {
-    padding: 20px;
-    margin: 10px 0;
+    padding: 10px 20px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .inline-photo {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    max-width: 340px; 
+    height: 400px; 
+    object-fit: cover; 
+    object-position: center top; 
+    border-radius: 170px 170px 0 0; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    display: block;
 }
 
 /* --- COUNTDOWN --- */
@@ -205,6 +209,8 @@ body {
     font-size: 10px;
     color: #777;
     text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
 }
 
 /* --- TIMELINE --- */
@@ -229,7 +235,7 @@ body {
     border-radius: 50%;
 }
 
-/* --- 🖼️ MODERN FIXED IMAGE SLIDER STYLE --- */
+/* --- IMAGE SLIDER STYLE --- */
 .gallery-section {
     padding: 40px 20px;
     clear: both;
@@ -276,7 +282,7 @@ body {
 .gallery-slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* මුහුණු නොකැපී 100% ක් ලස්සනට පෙන්වීමට */
+    object-fit: contain; 
     background-color: #fff;
     display: block;
 }
@@ -313,4 +319,24 @@ iframe {
 .btn:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 20px rgba(195, 20, 50, 0.5);
+}
+
+/* --- 🌟 LUXURY RSVP BUTTON STYLE --- */
+.rsvp-btn {
+    background: #4a0e17 !important; 
+    color: #fff !important;
+    border: 1px solid #d4af37; 
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 15px 40px !important;
+    box-shadow: 0 4px 20px rgba(74, 14, 23, 0.25) !important;
+    transition: all 0.4s ease;
+}
+
+.rsvp-btn:hover {
+    background: #d4af37 !important; 
+    color: #4a0e17 !important;
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4) !important;
+    transform: translateY(-3px);
 }
