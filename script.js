@@ -7,32 +7,31 @@ function openEnvelope() {
     
     setTimeout(() => {
         overlay.style.display = 'none';
-        mainContent.style.display = 'block'; // සයිට් එක පෙන්වීම
+        mainContent.style.display = 'block'; 
         
-        // සයිට් එක පෙනුන ගමන් පොඩි වෙලාවකින් සුදුවට මැවෙන Effect එක දීම
         setTimeout(() => {
             mainContent.style.opacity = '1';
-            handleScrollAnimation(); // ඇනිමේෂන් ක්‍රියාත්මක කිරීම
+            handleScrollAnimation(); 
         }, 50);
 
-        setInterval(createPetal, 300); // මල් පෙති වැටීම
-        startGoldGalleryLoop(); // 3D Book Auto-Loop
+        setInterval(createPetal, 300); 
+        startGallerySlider(); // නව ගැලරිය සක්‍රීය කිරීම
     }, 1000);
 }
 
-// --- 2. 100% වැඩ කරන Scroll Animation Logic ---
+// --- 2. Scroll Animation Logic ---
 function handleScrollAnimation() {
     const animateSections = document.querySelectorAll('.animate-section');
     
     const observerOptions = {
         root: null,
-        threshold: 0.05 // සෙක්ෂන් එකෙන් 5% ක් පෙනෙද්දීම ඇනිමේෂන් එක වැඩ කරයි
+        threshold: 0.05 
     };
 
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('appear'); // CSS එක හරහා ඇනිමේෂන් එක සිදුවේ
+                entry.target.classList.add('appear'); 
                 observer.unobserve(entry.target); 
             }
         });
@@ -66,14 +65,18 @@ const countdownInterval = setInterval(function() {
     }
 }, 1000);
 
-// --- 4. Automatic 3D Flip Book Loop ---
-function startGoldGalleryLoop() {
-    const bookContainer = document.querySelector('.book-container');
-    if(bookContainer) {
-        setInterval(() => {
-            bookContainer.classList.toggle('flipped');
-        }, 3000);
-    }
+// --- 4. Automatic Sequential Gallery Slider (පින්තූර 5ම එකින් එක මාරු වීමට) ---
+let currentSlideIndex = 0;
+
+function startGallerySlider() {
+    const slides = document.querySelectorAll('.gallery-slide');
+    if (slides.length === 0) return;
+
+    setInterval(() => {
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+    }, 3000); 
 }
 
 // --- 5. Falling Flower Petals Effect ---
